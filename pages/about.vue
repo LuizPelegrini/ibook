@@ -1,13 +1,11 @@
 <template>
-  <div></div>
+  <h1>About</h1>
 </template>
 
-<script lang="ts">
+<script>
 import Vue from 'vue';
 
 export default Vue.extend({
   layout: 'ibook',
 });
 </script>
-
-<style lang="scss" scoped></style>
