@@ -1,6 +1,6 @@
 import { Module, VuexModule, Mutation, Action } from 'vuex-module-decorators';
 import { Book } from '@/models';
-import { $axios } from '~/utils/nuxt-instance';
+import { $axios } from '@/utils/nuxt-instance';
 
 @Module({ name: 'books', stateFactory: true, namespaced: true })
 export default class Books extends VuexModule {

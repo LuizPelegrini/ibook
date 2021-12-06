@@ -12,5 +12,7 @@ module.exports = {
   ],
   plugins: [],
   // add your custom rules here
-  rules: {},
+  rules: {
+    'import/named': 'off', // apparently when `import { PropOptions } from 'vue'` throws import/named error when this is on
+  },
 };

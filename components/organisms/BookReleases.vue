@@ -1,25 +1,23 @@
 <template>
   <div class="book-releases">
     <h2>Releases</h2>
-    <BookItem v-for="(book, index) in books" :key="index" :book="book" />
+    <ul class="book-list">
+      <li v-for="book in $books" :key="book.id">
+        <BookItem :book="book" />
+      </li>
+    </ul>
   </div>
 </template>
 
 <script lang="ts">
 import Vue from 'vue';
+import { booksStore } from '@/store';
+
 export default Vue.extend({
-  data() {
-    return {
-      books: [
-        {
-          title: 'Hello',
-          image:
-            'https://avatars.githubusercontent.com/u/28706372?s=88&u=4a401a8a0f03e301ab349d6ecf5d4df0225f0cc5&v=4',
-          altText: 'Alternative Text',
-          authorName: 'Luiz',
-        },
-      ],
-    };
+  computed: {
+    $books() {
+      return booksStore.$all;
+    },
   },
 });
 </script>
@@ -32,6 +30,20 @@ export default Vue.extend({
     font-size: 1.375rem;
     font-weight: 500;
     color: color(dark, darkest);
+  }
+  .book-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    grid-gap: 2rem;
+    @include screen('small') {
+    }
+    @include screen('medium') {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    @include screen('large') {
+      grid-template-columns: repeat(6, 1fr);
+    }
   }
 }
 </style>

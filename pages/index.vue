@@ -1,6 +1,5 @@
 <template>
-  <!-- <HomeTemplate /> -->
-  <pre>{{ $all }}</pre>
+  <HomeTemplate />
 </template>
 
 <script lang="ts">
@@ -13,13 +12,5 @@ export default Vue.extend({
   async asyncData() {
     await booksStore.index();
   },
-
-  computed: {
-    $all() {
-      return booksStore.$all;
-    },
-  },
 });
 </script>
-
-<style lang="scss" scoped></style>
