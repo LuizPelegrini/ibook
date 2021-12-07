@@ -47,7 +47,7 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    extractCSS: true, // to extract CSS out of the head tag
+    extractCSS: true,
   },
 
   styleResources: {
