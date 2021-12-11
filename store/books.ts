@@ -11,7 +11,9 @@ export default class Books extends VuexModule {
     return this.books;
   }
 
-  public get $single(): Book {
+  public get $single(): Book | null {
+    if (Object.keys(this.book).length === 0) return null;
+
     return this.book;
   }
 

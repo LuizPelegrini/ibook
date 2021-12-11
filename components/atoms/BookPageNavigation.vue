@@ -1,7 +1,5 @@
 <template>
-  <div class="book-page-text">
-    <div v-html="text"></div>
-  </div>
+  <div class="book-page-navigation"></div>
 </template>
 
 <script lang="ts">
@@ -9,8 +7,8 @@ import Vue from 'vue';
 
 export default Vue.extend({
   props: {
-    text: {
-      type: String,
+    pageNumber: {
+      type: Number,
       required: true,
     },
   },

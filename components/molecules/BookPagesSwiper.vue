@@ -1,16 +1,15 @@
 <template>
   <div class="book-pages-swiper">
-    <Swiper :options="swiperOptions">
+    <Swiper v-if="$book" :options="swiperOptions">
       <SwiperSlide>
-        <BookPageText text="Slide 1" />
+        <BookPageCover
+          :cover-img="$book.cover"
+          :description="`${$book.title}'s cover`"
+        />
       </SwiperSlide>
-      <SwiperSlide>
-        <BookPageText text="Slide 2" />
+      <SwiperSlide v-for="page in $book.pages" :key="page.id" :class="page.id">
+        <BookPageText :text="page.text" :class="page.id" />
       </SwiperSlide>
-      <SwiperSlide>
-        <BookPageText text="Slide 3" />
-      </SwiperSlide>
-      <div slot="pagination" class="swiper-pagination"></div>
     </Swiper>
   </div>
 </template>
@@ -18,6 +17,7 @@
 <script lang="ts">
 import Vue from 'vue';
 import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper';
+import { booksStore } from '@/store';
 
 export default Vue.extend({
   components: {
@@ -32,11 +32,15 @@ export default Vue.extend({
   data() {
     return {
       swiperOptions: {
-        pagination: {
-          el: '.swiper-pagination',
-        },
+        grabCursor: true,
       },
     };
+  },
+
+  computed: {
+    $book() {
+      return booksStore.$single;
+    },
   },
 });
 </script>

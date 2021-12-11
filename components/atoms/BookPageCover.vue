@@ -1,6 +1,6 @@
 <template>
-  <div class="book-page-text">
-    <div v-html="text"></div>
+  <div class="book-page-cover">
+    <img :src="coverImg" :alt="description" />
   </div>
 </template>
 
@@ -9,7 +9,11 @@ import Vue from 'vue';
 
 export default Vue.extend({
   props: {
-    text: {
+    coverImg: {
+      type: String,
+      required: true,
+    },
+    description: {
       type: String,
       required: true,
     },

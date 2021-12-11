@@ -1,10 +1,12 @@
 <template>
   <div class="book-categories">
-    <Chip
-      v-for="category in $book.categories"
-      :key="category.id"
-      :text="category.name"
-    />
+    <div v-if="$book">
+      <Chip
+        v-for="category in $book.categories"
+        :key="category.id"
+        :text="category.name"
+      />
+    </div>
   </div>
 </template>
 

@@ -15,12 +15,12 @@ export default Vue.extend({
 
   head() {
     return {
-      title: booksStore.$single.title,
+      title: booksStore.$single?.title || '',
       meta: [
         {
           hid: 'description',
           name: 'description',
-          content: booksStore.$single.description,
+          content: booksStore.$single?.description || '',
         },
       ],
     };
