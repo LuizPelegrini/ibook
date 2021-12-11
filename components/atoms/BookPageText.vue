@@ -16,3 +16,11 @@ export default Vue.extend({
   },
 });
 </script>
+
+<style lang="scss" scoped>
+.book-page-text {
+  div {
+    line-height: 1.625rem;
+  }
+}
+</style>

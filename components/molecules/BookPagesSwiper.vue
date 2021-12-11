@@ -16,31 +16,32 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import { Swiper, SwiperSlide, directive } from 'vue-awesome-swiper';
-import { booksStore } from '@/store';
+import SwiperMixin from '@/mixins/swiper';
 
 export default Vue.extend({
-  components: {
-    Swiper,
-    SwiperSlide,
-  },
-
-  directives: {
-    swiper: directive,
-  },
+  mixins: [SwiperMixin],
 
   data() {
     return {
       swiperOptions: {
         grabCursor: true,
+        spaceBetween: 50,
       },
     };
   },
-
-  computed: {
-    $book() {
-      return booksStore.$single;
-    },
-  },
 });
 </script>
+
+<style lang="scss" scoped>
+.book-pages-swiper {
+  height: 100%;
+  padding: 50px;
+  box-shadow: 0px 4px 11px 4px rgba(0, 0, 0, 0.13);
+  .swiper-container {
+    height: 100%;
+    .swiper-slide {
+      overflow-y: auto;
+    }
+  }
+}
+</style>

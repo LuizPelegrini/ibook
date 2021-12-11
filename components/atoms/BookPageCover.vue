@@ -20,3 +20,12 @@ export default Vue.extend({
   },
 });
 </script>
+
+<style lang="scss" scoped>
+.book-page-cover {
+  height: 100%;
+  img {
+    height: 100%;
+  }
+}
+</style>

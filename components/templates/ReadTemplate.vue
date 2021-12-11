@@ -1,5 +1,11 @@
 <template>
   <div class="read-template">
-    <BookPagesSwiper />
+    <BookReadingPages />
   </div>
 </template>
+
+<style lang="scss" scoped>
+.read-template {
+  height: 100%;
+}
+</style>
