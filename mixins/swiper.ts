@@ -11,6 +11,7 @@ export default Vue.extend({
   directives: {
     swiper: directive,
   },
+
   computed: {
     $book() {
       return booksStore.$single;

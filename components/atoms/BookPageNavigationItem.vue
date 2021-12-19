@@ -29,6 +29,7 @@ export default Vue.extend({
   border: 1px solid color(dark, base);
   width: 100%;
   height: 100%;
+  cursor: pointer;
   .gray-block {
     display: block;
     width: 100%;

@@ -1,7 +1,12 @@
 <template>
   <div class="book-pages-swiper-navigator">
-    <Swiper class="swiper" :options="swiperOptions">
-      <SwiperSlide v-for="page in $book.pages" :key="page.id" :class="page.id">
+    <Swiper
+      ref="swiper"
+      class="swiper"
+      :options="swiperOptions"
+      @click-slide="handleClick"
+    >
+      <SwiperSlide v-for="page in $book.pages" :key="page.id">
         <BookPageNavigationItem :page-number="page.pageNumber" />
       </SwiperSlide>
     </Swiper>
@@ -12,6 +17,11 @@
 import Vue from 'vue';
 
 import SwiperMixin from '@/mixins/swiper';
+import SwiperType from '@/utils/types/Swiper';
+
+interface SwiperRef {
+  $swiper: SwiperType;
+}
 
 export default Vue.extend({
   mixins: [SwiperMixin],
@@ -24,6 +34,17 @@ export default Vue.extend({
         spaceBetween: 20,
       },
     };
+  },
+
+  methods: {
+    handleClick(slide: Number) {
+      this.$emit('slideChanged', slide);
+    },
+
+    slideTo(slide: Number) {
+      const swiperRef = this.$refs.swiper as SwiperRef | undefined;
+      if (swiperRef) swiperRef.$swiper.slideTo(slide);
+    },
   },
 });
 </script>

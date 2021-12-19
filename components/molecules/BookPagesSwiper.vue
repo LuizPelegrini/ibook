@@ -1,6 +1,12 @@
 <template>
   <div class="book-pages-swiper">
-    <Swiper v-if="$book" class="swiper" :options="swiperOptions">
+    <Swiper
+      v-if="$book"
+      ref="swiper"
+      class="swiper"
+      :options="swiperOptions"
+      @slide-change="handleSlideChange"
+    >
       <SwiperSlide v-for="page in $book.pages" :key="page.id">
         <BookPageText :text="page.text" :class="page.id" />
       </SwiperSlide>
@@ -11,6 +17,11 @@
 <script lang="ts">
 import Vue from 'vue';
 import SwiperMixin from '@/mixins/swiper';
+import SwiperType from '@/utils/types/Swiper';
+
+interface SwiperRef {
+  $swiper: SwiperType;
+}
 
 export default Vue.extend({
   mixins: [SwiperMixin],
@@ -23,6 +34,21 @@ export default Vue.extend({
         slidesPerView: 'auto',
       },
     };
+  },
+
+  methods: {
+    slideTo(slide: Number) {
+      const swiperRef = this.$refs.swiper as SwiperRef | undefined;
+      if (swiperRef) swiperRef.$swiper.slideTo(slide);
+    },
+
+    handleSlideChange() {
+      const swiperRef = this.$refs.swiper as SwiperRef | undefined;
+      if (swiperRef) {
+        const swiperIndex = swiperRef.$swiper.activeIndex;
+        this.$emit('slide-change', swiperIndex);
+      }
+    },
   },
 });
 </script>
