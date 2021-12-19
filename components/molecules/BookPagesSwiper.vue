@@ -1,13 +1,7 @@
 <template>
   <div class="book-pages-swiper">
-    <Swiper v-if="$book" :options="swiperOptions">
-      <SwiperSlide>
-        <BookPageCover
-          :cover-img="$book.cover"
-          :description="`${$book.title}'s cover`"
-        />
-      </SwiperSlide>
-      <SwiperSlide v-for="page in $book.pages" :key="page.id" :class="page.id">
+    <Swiper v-if="$book" class="swiper" :options="swiperOptions">
+      <SwiperSlide v-for="page in $book.pages" :key="page.id">
         <BookPageText :text="page.text" :class="page.id" />
       </SwiperSlide>
     </Swiper>
@@ -26,6 +20,7 @@ export default Vue.extend({
       swiperOptions: {
         grabCursor: true,
         spaceBetween: 50,
+        slidesPerView: 'auto',
       },
     };
   },
@@ -41,6 +36,9 @@ export default Vue.extend({
     height: 100%;
     .swiper-slide {
       overflow-y: auto;
+      p {
+        white-space: normal;
+      }
     }
   }
 }

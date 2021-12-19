@@ -42,7 +42,7 @@ export default {
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: 'https://ibook-api.herokuapp.com',
+    baseURL: 'http://localhost:3333',
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

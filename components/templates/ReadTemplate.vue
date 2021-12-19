@@ -6,6 +6,5 @@
 
 <style lang="scss" scoped>
 .read-template {
-  height: 100%;
 }
 </style>
