@@ -8,7 +8,7 @@
       @slide-change="handleSlideChange"
     >
       <SwiperSlide v-for="page in $book.pages" :key="page.id">
-        <BookPageText :text="page.text" :class="page.id" />
+        <BookPageText :text="page.text" />
       </SwiperSlide>
     </Swiper>
   </div>
@@ -39,7 +39,9 @@ export default Vue.extend({
   methods: {
     slideTo(slide: Number) {
       const swiperRef = this.$refs.swiper as SwiperRef | undefined;
-      if (swiperRef) swiperRef.$swiper.slideTo(slide);
+      if (swiperRef) {
+        swiperRef.$swiper.slideTo(slide);
+      }
     },
 
     handleSlideChange() {

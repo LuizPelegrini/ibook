@@ -6,8 +6,11 @@
       :options="swiperOptions"
       @click-slide="handleClick"
     >
-      <SwiperSlide v-for="page in $book.pages" :key="page.id">
-        <BookPageNavigationItem :page-number="page.pageNumber" />
+      <SwiperSlide v-for="(page, index) in $book.pages" :key="page.id">
+        <BookPageNavigationItem
+          :page-number="page.pageNumber"
+          :is-current-page="innerPage === index"
+        />
       </SwiperSlide>
     </Swiper>
   </div>
@@ -26,6 +29,13 @@ interface SwiperRef {
 export default Vue.extend({
   mixins: [SwiperMixin],
 
+  props: {
+    page: {
+      type: Number,
+      required: true,
+    },
+  },
+
   data() {
     return {
       swiperOptions: {
@@ -33,6 +43,7 @@ export default Vue.extend({
         slidesPerView: 3,
         spaceBetween: 20,
       },
+      innerPage: this.page as Number,
     };
   },
 
@@ -43,7 +54,10 @@ export default Vue.extend({
 
     slideTo(slide: Number) {
       const swiperRef = this.$refs.swiper as SwiperRef | undefined;
-      if (swiperRef) swiperRef.$swiper.slideTo(slide);
+      if (swiperRef) {
+        swiperRef.$swiper.slideTo(slide);
+        this.innerPage = slide;
+      }
     },
   },
 });

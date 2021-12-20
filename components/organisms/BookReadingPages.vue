@@ -3,6 +3,7 @@
     <BookPagesSwiperNavigator
       ref="swiper-navigator"
       class="book-reading-pages-navigator"
+      :page="page"
       @slideChanged="handleSlideChanged"
     />
     <BookPagesSwiper

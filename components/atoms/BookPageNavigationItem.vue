@@ -1,5 +1,7 @@
 <template>
-  <div class="book-page-navigation-item">
+  <div
+    :class="['book-page-navigation-item', isCurrentPage ? 'current-page' : '']"
+  >
     <div>
       <span v-for="n in 4" :key="n" class="gray-block"></span>
     </div>
@@ -16,6 +18,11 @@ export default Vue.extend({
       type: Number,
       required: true,
     },
+
+    isCurrentPage: {
+      type: Boolean,
+      default: false,
+    },
   },
 });
 </script>
@@ -30,6 +37,12 @@ export default Vue.extend({
   width: 100%;
   height: 100%;
   cursor: pointer;
+  &:hover {
+    border: 2px solid color(dark, base);
+  }
+  &.current-page {
+    border: 3px solid color(dark, base);
+  }
   .gray-block {
     display: block;
     width: 100%;
