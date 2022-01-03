@@ -32,8 +32,12 @@ export default class Books extends VuexModule {
   }
 
   @Action({ commit: 'SET_SINGLE' })
-  public async show(id: Book['id']) {
-    const book = await $axios.$get(`/books/${id}`);
-    return book;
+  public async show(id: Book['id']): Promise<Book | undefined> {
+    try {
+      const book = (await $axios.$get(`/books/${id}`)) as Book;
+      return book;
+    } catch (err) {
+      throw new Error('Book not found');
+    }
   }
 }
