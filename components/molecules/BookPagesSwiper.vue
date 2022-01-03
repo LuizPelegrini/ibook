@@ -18,6 +18,7 @@
 import Vue from 'vue';
 import SwiperMixin from '@/mixins/swiper';
 import SwiperType from '@/utils/types/Swiper';
+import { booksStore } from '@/store';
 
 interface SwiperRef {
   $swiper: SwiperType;
@@ -34,6 +35,12 @@ export default Vue.extend({
         slidesPerView: 'auto',
       },
     };
+  },
+
+  computed: {
+    $book() {
+      return booksStore.$single;
+    },
   },
 
   methods: {

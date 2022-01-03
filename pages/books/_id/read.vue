@@ -11,9 +11,7 @@ export default Vue.extend({
   layout: 'ibook',
 
   async asyncData({ params }) {
-    if (!booksStore.$single) {
-      await booksStore.show(Number(params.id));
-    }
+    await booksStore.show(Number(params.id));
   },
 });
 </script>
