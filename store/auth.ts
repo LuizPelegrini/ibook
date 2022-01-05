@@ -1,34 +1,31 @@
-import { VuexModule, Action, Mutation, Module } from 'vuex-module-decorators';
+import { VuexModule, Action, Module } from 'vuex-module-decorators';
+import { $cookies } from '@/utils/cookies-extractor';
 
 @Module({ name: 'auth', stateFactory: true, namespaced: true })
 export default class Auth extends VuexModule {
-  private jwt: string = '';
-
   public get $isAuthenticated(): boolean {
     // just check the existence of the token
-    return this.jwt.length > 0;
+    const jwt = $cookies.get('@ibook:jwt');
+    return !!jwt && jwt.length > 0;
   }
 
-  @Mutation
-  private SET_JWT_TOKEN(jwt: string): void {
-    this.jwt = jwt;
-  }
-
-  @Action({ commit: 'SET_JWT_TOKEN' })
+  @Action
   public login(_email: string, _password: string): string {
     try {
       // request server authentication
       const jwt = 'some-jwt-token';
+      $cookies.set('@ibook:jwt', jwt);
       return jwt;
     } catch (error) {
       throw new Error('Unable to perform auth login request');
     }
   }
 
-  @Action({ commit: 'SET_JWT_TOKEN' })
+  @Action
   public logout(): string {
     try {
       const jwt = '';
+      $cookies.set('@ibook:jwt', jwt);
       return jwt;
     } catch (error) {
       throw new Error('Unable to perform auth logout request');

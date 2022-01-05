@@ -8,11 +8,14 @@
 import { Store } from 'vuex';
 import { getModule } from 'vuex-module-decorators';
 import Books from '@/store/books';
+import Auth from '@/store/auth';
 
 let booksStore: Books;
+let authStore: Auth;
 
 function initialiseStores(store: Store<any>): void {
   booksStore = getModule(Books, store);
+  authStore = getModule(Auth, store);
 }
 
-export { initialiseStores, booksStore };
+export { initialiseStores, booksStore, authStore };

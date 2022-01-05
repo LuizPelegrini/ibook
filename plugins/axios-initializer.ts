@@ -1,10 +1,10 @@
 /**
- * This will ask the nuxt-instance to initialize the Nuxt axios module and make it available
- * to importing in the Vuex Store modules
+ * This will ask the axios-extractor to extraxt axios module from Nuxt context and make it available
+ * for importing in the Vuex Store modules
  */
 
 import { Plugin } from '@nuxt/types';
-import { initializeAxios } from '@/utils/nuxt-instance';
+import { initializeAxios } from '@/utils/axios-extractor';
 
 const accessor: Plugin = ({ $axios }) => {
   initializeAxios($axios);
