@@ -1,5 +1,7 @@
 <template>
-  <h1>Dashboard</h1>
+  <div class="dashboard-page">
+    <DashboardTemplate />
+  </div>
 </template>
 
 <script lang="ts">
